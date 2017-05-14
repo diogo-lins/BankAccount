@@ -1,6 +1,23 @@
-var account = {
-    balance: 0
-};
+var accounts = [];
+
+function creatAccount(account) {
+    accounts.push(account);
+    return account;
+}
+
+function getAccount(username) {
+    var matchedAccount;
+
+    accounts.forEach(
+        function (account) {
+            if (account.username === username) {
+                matchedAccount = account;
+            }
+        }
+    )
+
+    return matchedAccount;
+}
 
 function deposit (account, amount) {
     account.balance += amount;
@@ -14,10 +31,13 @@ function getBalance (account) {
     return account.balance;
 };
 
-deposit(account, 1000);
+var andrewsAccount = creatAccount(
+    {
+        username: 'Andrew',
+        balance: 0
+    }
+)
 
-console.log(getBalance(account));
-
-withdraw(account, 250);
-
-console.log(getBalance(account));
+deposit(andrewsAccount, 1000);
+console.log(getBalance(andrewsAccount));
+console.log(accounts);
